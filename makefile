@@ -1,6 +1,6 @@
 CC		= cc
 #CFLAGS	= -Wall -Werror -Wextra -pthread 
-NAME	= pilo
+NAME	= philo
 
 SRC_PATH = src/
 OBJ_PATH = obj/
