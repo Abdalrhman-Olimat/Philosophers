@@ -5,7 +5,7 @@ NAME	= philo
 SRC_PATH = src/
 OBJ_PATH = obj/
 
-SRC		= test.c
+SRC		= main.c input_error.c parsing.c init.c safe.c
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))
 OBJ		= $(SRC:.c=.o)
 OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
