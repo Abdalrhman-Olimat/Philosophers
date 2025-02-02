@@ -20,6 +20,13 @@ typedef	enum	e_opcode
 	DETACH,
 }			t_opcode;
 
+typedef enum e_time_code
+{
+	SECOUND,
+	MILLISECOUND,
+	MICROSECOUND,
+}	t_time_code;
+
 typedef struct s_table t_table; // Forward declare t_table using typedef
 typedef struct s_fork
 {
@@ -77,5 +84,11 @@ bool get_bool(pthread_mutex_t *mutex, bool *value);
 long get_long(pthread_mutex_t *mutex, long *value);
 void set_long(pthread_mutex_t *mutex, long *dest, long value);
 void simulation_finished(t_table *table);
+
+/*******synchro_utils.c*******/
+void wait_all_threads(t_table *table);
+
+/********UTILE */
+long    gettime(t_time_code time_code);
 
 #endif

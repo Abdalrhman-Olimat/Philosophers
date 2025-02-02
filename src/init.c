@@ -47,6 +47,7 @@ void    data_init(t_table *table)
     {
         safe_mutex_handel(&table->fork[i].fork, INIT);
         table->fork[i].fork_id = i;
+    }
     philo_init(table);
 }
 

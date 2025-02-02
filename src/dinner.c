@@ -6,7 +6,7 @@ void *dinner_simulation(void *data)
     t_philo *philo;
 
     philo = (t_philo *)data;
-    
+    wait_all_threads(philo->table);
 
 }
 
@@ -28,4 +28,6 @@ void    dinner_start(t_table *table)
         
     }
     set_bool(&table->table_mutex, &table->all_thread_ready, true);
+
+
 }
