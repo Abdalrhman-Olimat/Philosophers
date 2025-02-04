@@ -114,4 +114,6 @@ bool    all_thread_running(pthread_mutex_t *mutex, long *threads,long philo_nbr)
 void increase_long(pthread_mutex_t *mutex, long *value);
 void *monitor_dinner(void *data);
 void    clean(t_table *table);
+void	unsynchronize_philos(t_philo *philo);
+ void think(t_philo *philo, bool pre_simulation);
 #endif

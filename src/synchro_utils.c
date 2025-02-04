@@ -28,3 +28,16 @@ void increase_long(pthread_mutex_t *mutex, long *value)
     *value += 1;
     safe_mutex_handel(mutex, UNLOCK);
 }
+void	unsynchronize_philos(t_philo *philo)
+{
+	if (philo->table->philo_nbr % 2 == 0)
+	{
+		if (philo->id % 2 == 0)
+			precise_usleep(30000, philo->table);
+	}
+	else
+	{
+		if (philo->id % 2 != 0)
+			think(philo, true);
+	}
+}
