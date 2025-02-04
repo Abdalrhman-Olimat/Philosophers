@@ -1,5 +1,5 @@
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra -pthread 
+CFLAGS	= -g -fsanitize=thread  -Wall -Werror -Wextra -pthread 
 NAME	= philo
 
 SRC_PATH = src/
@@ -20,7 +20,7 @@ $(OBJ_PATH):
 	mkdir $(OBJ_PATH)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS)  -pthread $(OBJS) -o $(NAME) 
+	$(CC) $(CFLAGS)  $(OBJS) -o $(NAME) 
 
 clean:
 	rm -rf $(OBJ_PATH)

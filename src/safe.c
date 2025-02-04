@@ -12,6 +12,7 @@ void    *safe_malloc(size_t byte)
     }
     return (ret);
 }
+
 void    safe_mutex_handel(pthread_mutex_t *mutex, t_opcode opcode)
 {
     if(opcode == LOCK)
@@ -28,6 +29,7 @@ void    safe_mutex_handel(pthread_mutex_t *mutex, t_opcode opcode)
         exit(1);
         }
 }
+
 void    safe_thread_handel(pthread_t *thread, void *(*foo)(void *),void *data,t_opcode opcode)
 {
     if(opcode == CREATE)

@@ -15,6 +15,7 @@ void    clean(t_table *table)
     }
     safe_mutex_handel(&table->write_mutex, DESTROY);
     safe_mutex_handel(&table->table_mutex, DESTROY);
+    safe_mutex_handel(&table->printf_xx, DESTROY);
     free(table->fork);
     free(table->philos);
 }

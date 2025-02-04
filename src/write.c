@@ -25,11 +25,10 @@ void write_status(t_philo_status status, t_philo *philo, bool debug)
     elapsed = gettime(MILLISECOUND) - philo->table->start_simulation;
     if (philo->full)
         return;
+    safe_mutex_handel(&philo->table->printf_xx, LOCK);
     safe_mutex_handel(&philo->table->write_mutex, LOCK);
     if(debug)
-    {
         write_status_debug(status, philo, elapsed);
-    }
     else
     {
     if((TAKE_FIRST_FORK == status || TAKE_SECOND_FORK == status) && !simulation_finished(philo->table))
@@ -43,5 +42,6 @@ void write_status(t_philo_status status, t_philo *philo, bool debug)
     else if(DEAD == status && !simulation_finished(philo->table))
         printf("%-6ld %d died\n", elapsed, philo->id);
     }
+safe_mutex_handel(&philo->table->printf_xx, UNLOCK);
 safe_mutex_handel(&philo->table->write_mutex, UNLOCK);
 }

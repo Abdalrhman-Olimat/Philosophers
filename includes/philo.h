@@ -9,7 +9,6 @@
 #include <stdbool.h>
 
 #define DEBUG_MODE 0
-
 typedef enum e_state
 {
 	EATING,
@@ -17,7 +16,6 @@ typedef enum e_state
 	THINKING,
 	TAKE_FIRST_FORK,
 	TAKE_SECOND_FORK,
-	//FULL,
 	DEAD,
 }			t_philo_status;
 
@@ -72,6 +70,7 @@ struct s_table
 		bool	all_thread_ready;
 		pthread_mutex_t table_mutex;
 		pthread_mutex_t	write_mutex;
+		pthread_mutex_t	printf_xx;
 		pthread_t	monitor;
 		t_fork	*fork;//all the forks
 		t_philo	*philos;//all the philo

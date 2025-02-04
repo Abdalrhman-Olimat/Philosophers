@@ -22,12 +22,14 @@ bool    all_thread_running(pthread_mutex_t *mutex, long *threads,
     return (ret);
 
 }
+
 void increase_long(pthread_mutex_t *mutex, long *value)
 {
     safe_mutex_handel(mutex, LOCK);
     *value += 1;
     safe_mutex_handel(mutex, UNLOCK);
 }
+
 void	unsynchronize_philos(t_philo *philo)
 {
 	if (philo->table->philo_nbr % 2 == 0)
