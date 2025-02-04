@@ -47,7 +47,7 @@ void precise_usleep(long usec, t_table *table)
         elapsed = gettime(MICROSECOUND) - start;
         rem = usec - elapsed;
         if (rem > 1e3)
-            usleep(usec / 2);
+            usleep(rem / 2);
         else
             while (gettime(MICROSECOUND) - start < usec)
                 ;
