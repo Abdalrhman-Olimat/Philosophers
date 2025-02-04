@@ -46,7 +46,13 @@ int main (int ac, char **av)
 	{
 		parse_input(&table,av);
 		data_init(&table);//57
-
-
+		dinner_start(&table);
+		clean(&table);
 	}
+	else
+	{
+		write(2, "Invalid input\n", 14);
+		return (1);
+	}
+	return (0);
 }

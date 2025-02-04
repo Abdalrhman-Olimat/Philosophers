@@ -2,15 +2,15 @@
 
 void    *safe_malloc(size_t byte)
 {
-    void    *r;
+    void    *ret;
 
-    r = malloc(byte);
-    if (r == NULL)
+    ret = malloc(byte);
+    if (ret == NULL)
     {
         printf("Error\n");
         exit(1);
     }
-    rerurn (r);
+    return (ret);
 }
 void    safe_mutex_handel(pthread_mutex_t *mutex, t_opcode opcode)
 {
@@ -28,7 +28,7 @@ void    safe_mutex_handel(pthread_mutex_t *mutex, t_opcode opcode)
         exit(1);
         }
 }
-void    safe_thread_handel(pthread_t *thread, void *(*foo),void *data,t_opcode opcode)
+void    safe_thread_handel(pthread_t *thread, void *(*foo)(void *),void *data,t_opcode opcode)
 {
     if(opcode == CREATE)
         pthread_create(thread, NULL, foo, data);

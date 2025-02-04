@@ -8,6 +8,18 @@
 #include <sys/time.h>
 #include <stdbool.h>
 
+#define DEBUG_MODE 0
+
+typedef enum e_state
+{
+	EATING,
+	SLEEPING,
+	THINKING,
+	TAKE_FIRST_FORK,
+	TAKE_SECOND_FORK,
+	//FULL,
+	DEAD,
+}			t_philo_status;
 
 typedef	enum	e_opcode
 {
@@ -43,6 +55,7 @@ typedef struct s_philo {
     long		last_meal_time;
     t_fork 		*first_fork;//left fork
     t_fork 		*second_fork;//right fork
+	pthread_mutex_t philo_mutex;
 	t_table		*table;
 }		t_philo;
 
@@ -54,9 +67,12 @@ struct s_table
 		long	time_to_sleep;
 		long	nbr_limit_meals;// {number } || flag -1 
 		long	start_simulation;//start time 
+		long	threads_running_nbr;
 		bool	end_simulation;
 		bool	all_thread_ready;
 		pthread_mutex_t table_mutex;
+		pthread_mutex_t	write_mutex;
+		pthread_t	monitor;
 		t_fork	*fork;//all the forks
 		t_philo	*philos;//all the philo
 
@@ -76,14 +92,14 @@ void    data_init(t_table *table);
 /*****safe*****/
 void    *safe_malloc(size_t byte);
 
-void    safe_thread_handel(pthread_t *thread, void *(*foo),void *data,t_opcode opcode);
+void    safe_thread_handel(pthread_t *thread, void *(*foo)(void *),void *data,t_opcode opcode);
 void    safe_mutex_handel(pthread_mutex_t *mutex, t_opcode opcode);
 
 void set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
 bool get_bool(pthread_mutex_t *mutex, bool *value);
 long get_long(pthread_mutex_t *mutex, long *value);
 void set_long(pthread_mutex_t *mutex, long *dest, long value);
-void simulation_finished(t_table *table);
+bool simulation_finished(t_table *table);
 
 /*******synchro_utils.c*******/
 void wait_all_threads(t_table *table);
@@ -91,4 +107,11 @@ void wait_all_threads(t_table *table);
 /********UTILE */
 long    gettime(t_time_code time_code);
 
+void precise_usleep(long usec, t_table *table);
+void write_status(t_philo_status status, t_philo *philo, bool debug);
+void    dinner_start(t_table *table);
+bool    all_thread_running(pthread_mutex_t *mutex, long *threads,long philo_nbr);
+void increase_long(pthread_mutex_t *mutex, long *value);
+void *monitor_dinner(void *data);
+void    clean(t_table *table);
 #endif
