@@ -6,7 +6,7 @@
 /*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:03:29 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/06 05:03:30 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/02/06 05:48:36 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,37 @@
 #include <stdbool.h>
 
 #define DEBUG_MODE 0
+
+#include <stdio.h>
+
+// Define color codes
+#define RESET       "\033[0m"
+#define BOLD        "\033[1m"
+#define UNDERLINE   "\033[4m"
+
+// Foreground colors
+#define BLACK       "\033[30m"
+#define RED         "\033[31m"
+#define GREEN       "\033[92m"
+#define YELLOW      "\033[93m"
+#define BLUE        "\033[94m"
+#define MAGENTA     "\033[95m"
+#define CYAN        "\033[96m"
+#define WHITE       "\033[37m"
+
+
+// Background colors
+#define BGBLACK     "\033[40m"
+#define BGRED       "\033[41m"
+#define BGGREEN     "\033[42m"
+#define BGYELLOW    "\033[43m"
+#define BGBLUE      "\033[44m"
+#define BGMAGENTA   "\033[45m"
+#define BGCYAN      "\033[46m"
+#define BGWHITE     "\033[47m"
+#define BGBRIGHTGREEN "\033[102m"
+
+
 typedef enum e_state
 {
 	EATING,
