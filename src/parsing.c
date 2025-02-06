@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/06 05:04:18 by aeleimat          #+#    #+#             */
+/*   Updated: 2025/02/06 05:04:19 by aeleimat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 //handel max_int
 static long	ft_atol(const char *str)
@@ -35,6 +47,4 @@ void    parse_input(t_table *table, char **av)
         table->nbr_limit_meals = ft_atol(av[5]);
     else
         table->nbr_limit_meals = -1;
-
-
 }

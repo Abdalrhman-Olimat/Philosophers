@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dinner.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/06 05:03:45 by aeleimat          #+#    #+#             */
+/*   Updated: 2025/02/06 05:03:46 by aeleimat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/philo.h"
 
  void think(t_philo *philo, bool pre_simulation)
@@ -71,30 +83,40 @@ void *dinner_simulation(void *data)
 }
 
 
-void    dinner_start(t_table *table)
+int    dinner_start(t_table *table)
 {
     int i;
+    int error;
 
     i = -1;
-    if(table->nbr_limit_meals == 0)
-        return;
-    else if(table->philo_nbr == 1)
-    safe_thread_handel(&table->philos[0].thread_id, long_philo,
-        &table->philos[0], CREATE);
+    if (table->nbr_limit_meals == 0)
+        return 1;
+    else if (table->philo_nbr == 1)
+    {
+        if ((error = safe_thread_handel(&table->philos[0].thread_id, long_philo, &table->philos[0], CREATE)) != 0)
+            return error;
+    }
     else
     {
-        while(++i < table->philo_nbr)
-            safe_thread_handel(&table->philos[i].thread_id, dinner_simulation,
-                &table->philos[i], CREATE);
-        
+        while (++i < table->philo_nbr)
+        {
+            if ((error = safe_thread_handel(&table->philos[i].thread_id, dinner_simulation, &table->philos[i], CREATE)) != 0)
+                return error;
+        }
     }
-    safe_thread_handel(&table->monitor, monitor_dinner, table, CREATE);
+    if ((error = safe_thread_handel(&table->monitor, monitor_dinner, table, CREATE)) != 0)
+        return error;
     table->start_simulation = gettime(MILLISECOUND);
     set_bool(&table->table_mutex, &table->all_thread_ready, true);
     i = -1;
-    while(++i < table->philo_nbr)
-        safe_thread_handel(&table->philos[i].thread_id, NULL, NULL, JOIN);
-    
+    while (++i < table->philo_nbr)
+    {
+        if ((error = safe_thread_handel(&table->philos[i].thread_id, NULL, NULL, JOIN)) != 0)
+            return error;
+    }
     set_bool(&table->table_mutex, &table->end_simulation, true);
-    safe_thread_handel(&table->monitor, NULL, NULL, JOIN);
+    if ((error = safe_thread_handel(&table->monitor, NULL, NULL, JOIN)) != 0)
+        return error;
+    return 0;
 }
+

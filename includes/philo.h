@@ -1,5 +1,17 @@
-#ifndef philo_H
-# define philo_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/06 05:03:29 by aeleimat          #+#    #+#             */
+/*   Updated: 2025/02/06 05:03:30 by aeleimat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+# define PHILO_H
 
 #include <stdio.h>
 #include <unistd.h>
@@ -86,12 +98,12 @@ void    parse_input(t_table *table, char **av);
 
 /*****init.c*****/
 
-void    data_init(t_table *table);
+int    data_init(t_table *table);
 
 /*****safe*****/
-void    *safe_malloc(size_t byte);
+int    *safe_malloc(size_t byte);
 
-void    safe_thread_handel(pthread_t *thread, void *(*foo)(void *),void *data,t_opcode opcode);
+int    safe_thread_handel(pthread_t *thread, void *(*foo)(void *),void *data,t_opcode opcode);
 void    safe_mutex_handel(pthread_mutex_t *mutex, t_opcode opcode);
 
 void set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
@@ -108,7 +120,7 @@ long    gettime(t_time_code time_code);
 
 void precise_usleep(long usec, t_table *table);
 void write_status(t_philo_status status, t_philo *philo, bool debug);
-void    dinner_start(t_table *table);
+int    dinner_start(t_table *table);
 bool    all_thread_running(pthread_mutex_t *mutex, long *threads,long philo_nbr);
 void increase_long(pthread_mutex_t *mutex, long *value);
 void *monitor_dinner(void *data);
