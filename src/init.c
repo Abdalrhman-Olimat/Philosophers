@@ -12,9 +12,9 @@
 
 #include "../includes/philo.h"
 
-static void assign_forks(t_philo *phio, t_fork *forks, int i)
+static void	assign_forks(t_philo *phio, t_fork *forks, int i)
 {
-	int philo_nbr;
+	int	philo_nbr;
 
 	philo_nbr = phio->table->philo_nbr;
 	if (phio->id % 2 == 0)
@@ -29,12 +29,13 @@ static void assign_forks(t_philo *phio, t_fork *forks, int i)
 	}
 }
 
-static void philo_init(t_table *table)
+static void	philo_init(t_table *table)
 {
-	int i;
-	t_philo *philo;
+	int		i;
+	t_philo	*philo;
+
 	i = -1;
-	while(++i < table->philo_nbr)
+	while (++i < table->philo_nbr)
 	{
 		philo = table->philos + i;
 		philo->id = i + 1;
@@ -46,10 +47,10 @@ static void philo_init(t_table *table)
 	}
 }
 
-int    data_init(t_table *table)
+int	data_init(t_table *table)
 {
-	int i;
-	void *result;
+	int		i;
+	void	*result;
 
 	i = -1;
 	table->end_simulation = false;
@@ -57,20 +58,20 @@ int    data_init(t_table *table)
 	table->threads_running_nbr = 0;
 	result = safe_malloc(sizeof(t_philo) * table->philo_nbr);
 	if (result == NULL)
-		return 22;
+		return (22);
 	table->philos = (t_philo *)result;
 	safe_mutex_handel(&table->table_mutex, INIT);
 	safe_mutex_handel(&table->write_mutex, INIT);
 	safe_mutex_handel(&table->printf_xx, INIT);
 	result = safe_malloc(sizeof(t_fork) * table->philo_nbr);
 	if (result == NULL)
-		return 22;
+		return (22);
 	table->fork = (t_fork *)result;
-	while(++i < table->philo_nbr)
+	while (++i < table->philo_nbr)
 	{
 		safe_mutex_handel(&table->fork[i].fork, INIT);
 		table->fork[i].fork_id = i;
 	}
 	philo_init(table);
-	return 0;
+	return (0);
 }

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeleimat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:04:18 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/06 05:04:19 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:06:34 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
 //handel max_int
 static long	ft_atol(const char *str)
 {
@@ -36,15 +37,15 @@ static long	ft_atol(const char *str)
 	}
 	return (result * signal);
 }
-//handel < 60ms
-void    parse_input(t_table *table, char **av)
+
+void	parse_input(t_table *table, char **av)
 {
-    table->philo_nbr = ft_atol(av[1]);
-    table->time_to_die = ft_atol(av[2]) * 1000;
-    table->time_to_eat = ft_atol(av[3]) * 1000;
-    table->time_to_sleep = ft_atol(av[4]) * 1000;
-    if (av[5])
-        table->nbr_limit_meals = ft_atol(av[5]);
-    else
-        table->nbr_limit_meals = -1;
+	table->philo_nbr = ft_atol(av[1]);
+	table->time_to_die = ft_atol(av[2]) * 1000;
+	table->time_to_eat = ft_atol(av[3]) * 1000;
+	table->time_to_sleep = ft_atol(av[4]) * 1000;
+	if (av[5])
+		table->nbr_limit_meals = ft_atol(av[5]);
+	else
+		table->nbr_limit_meals = -1;
 }

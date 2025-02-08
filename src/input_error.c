@@ -19,30 +19,30 @@ static int	ft_isdigit(int a)
 	return (0);
 }
 
-int input_error(int ac, char **av)
+int	input_error(int ac, char **av)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
-	if(ac != 5 && ac != 6)
+	if (ac != 5 && ac != 6)
 	{
 		printf("Error: invalid input\n");
-		return 1;
+		return (1);
 	}
-	while(i < ac)
+	while (i < ac)
 	{
 		j = 0;
-		while(av[i][j])
+		while (av[i][j])
 		{
-			if(!(ft_isdigit(av[i][j])))
+			if (!(ft_isdigit(av[i][j])))
 			{
 				printf("Error: invalid input not nuumber\n");
-				return 1;
+				return (1);
 			}
 			j++;
 		}
 		i++;
 	}
-	return 0;
+	return (0);
 }

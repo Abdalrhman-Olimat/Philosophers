@@ -14,40 +14,41 @@
 
 int	*safe_malloc(size_t byte)
 {
-	void    *ret;
+	void	*ret;
 
 	ret = malloc(byte);
 	return (ret);
 }
 
-void    safe_mutex_handel(pthread_mutex_t *mutex, t_opcode opcode)
+void	safe_mutex_handel(pthread_mutex_t *mutex, t_opcode opcode)
 {
-	if(opcode == LOCK)
+	if (opcode == LOCK)
 		pthread_mutex_lock(mutex);
-	else if(opcode == UNLOCK)
+	else if (opcode == UNLOCK)
 		pthread_mutex_unlock(mutex);
-	else if(opcode == DESTROY)
+	else if (opcode == DESTROY)
 		pthread_mutex_destroy(mutex);
-	else if(opcode == INIT)
+	else if (opcode == INIT)
 		pthread_mutex_init(mutex, NULL);
 }
 
-int    safe_thread_handel(pthread_t *thread, void *(*foo)(void *),void *data,t_opcode opcode)
+int	safe_thread_handel(pthread_t *thread, void *(*foo)(void *), void *data,
+		t_opcode opcode)
 {
-	if(opcode == CREATE)
+	if (opcode == CREATE)
 	{
-		if(pthread_create(thread, NULL, foo, data) != 0)
-			return 12;
+		if (pthread_create(thread, NULL, foo, data) != 0)
+			return (12);
 	}
-	else if(opcode == JOIN)
+	else if (opcode == JOIN)
 	{
-		if(pthread_join(*thread, NULL) != 0)
-			return 13;
+		if (pthread_join(*thread, NULL) != 0)
+			return (13);
 	}
-	else if(opcode == DETACH)
+	else if (opcode == DETACH)
 	{
-		if(pthread_detach(*thread) != 0)
-			return 14;
+		if (pthread_detach(*thread) != 0)
+			return (14);
 	}
-	return 0;
+	return (0);
 }

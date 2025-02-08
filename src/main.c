@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeleimat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 14:37:22 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/06 05:12:32 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:11:41 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 
-void my_exit(int status) {
+void	my_exit(int status) {
 	__asm__ volatile (
 		"mov $1, %%eax\n\t"  // Syscall 1 for exit on x86
 		"mov %0, %%ebx\n\t"  // Status in ebx
@@ -79,20 +79,23 @@ void	handle_error_code(int error)
 	else if (error == 14)
 		write(2, "pthread_detach error\n", 22);
 }
+
 int	main(int ac, char **av)
 {
 	t_table	table;
-	int error_code;
+	int		error_code;
 
 	if (!input_error(ac, av))
 	{
 		parse_input(&table, av);
-		if ((error_code = data_init(&table)) != 0 )
+		error_code = data_init(&table);
+		if (error_code != 0)
 		{
 			handle_error_code(error_code);
 			return (1);
 		}
-		if ((error_code = dinner_start(&table)) != 0 )
+		error_code = dinner_start(&table);
+		if (error_code != 0)
 		{
 			handle_error_code(error_code);
 			return (1);
