@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeleimat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:04:30 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/06 05:04:31 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:25:37 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	clean(t_table *table)
 	}
 	safe_mutex_handel(&table->write_mutex, DESTROY);
 	safe_mutex_handel(&table->table_mutex, DESTROY);
-	safe_mutex_handel(&table->printf_xx, DESTROY);
 	free(table->fork);
 	free(table->philos);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeleimat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:03:29 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/06 05:48:36 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:53:43 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ struct s_table
 		bool	all_thread_ready;
 		pthread_mutex_t table_mutex;
 		pthread_mutex_t	write_mutex;
-		pthread_mutex_t	printf_xx;
 		pthread_t	monitor;
 		t_fork	*fork;//all the forks
 		t_philo	*philos;//all the philo

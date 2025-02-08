@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeleimat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:03:56 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/06 05:03:57 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:54:50 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	data_init(t_table *table)
 	table->philos = (t_philo *)result;
 	safe_mutex_handel(&table->table_mutex, INIT);
 	safe_mutex_handel(&table->write_mutex, INIT);
-	safe_mutex_handel(&table->printf_xx, INIT);
 	result = safe_malloc(sizeof(t_fork) * table->philo_nbr);
 	if (result == NULL)
 		return (22);

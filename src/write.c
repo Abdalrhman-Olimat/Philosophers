@@ -6,7 +6,7 @@
 /*   By: aeleimat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:04:33 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/08 11:01:49 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:52:25 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	write_status(t_philo_status status, t_philo *philo, bool debug)
 	elapsed = gettime(MILLISECOUND) - philo->table->start_simulation;
 	if (philo->full)
 		return ;
-	safe_mutex_handel(&philo->table->printf_xx, LOCK);
 	safe_mutex_handel(&philo->table->write_mutex, LOCK);
 	if ((TAKE_FIRST_FORK == status || TAKE_SECOND_FORK == status)
 		&& !simulation_finished(philo->table))
@@ -92,6 +91,5 @@ void	write_status(t_philo_status status, t_philo *philo, bool debug)
 			philo->id);
 	else if (DEAD == status && !simulation_finished(philo->table))
 		printf(BGBLACK BOLD RED "%-6ld %d died\n" RESET, elapsed, philo->id);
-	safe_mutex_handel(&philo->table->printf_xx, UNLOCK);
 	safe_mutex_handel(&philo->table->write_mutex, UNLOCK);
 }
