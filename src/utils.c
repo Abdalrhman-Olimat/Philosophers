@@ -6,7 +6,7 @@
 /*   By: aeleimat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:04:30 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/08 12:25:37 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/02/08 13:16:46 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,18 @@ void	precise_usleep(long usec, t_table *table)
 				;
 	}
 }
+
+/*
+void	precise_usleep(long usec, t_table *table)
+{
+	long	start;
+
+	start = gettime(MICROSECOUND);
+	while (gettime(MICROSECOUND) - start < usec)
+	{
+		if (simulation_finished(table))
+			break ;
+		usleep(100);
+	}
+}
+*/
