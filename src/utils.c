@@ -47,6 +47,21 @@ long	gettime(t_time_code time_code)
 void	precise_usleep(long usec, t_table *table)
 {
 	long	start;
+	
+	(void)usec;
+	(void)table;
+	start = gettime(MICROSECOUND);
+	while (gettime(MICROSECOUND) - start < usec)
+	{
+		if (simulation_finished(table))
+			break ;
+		usleep(100);
+	}
+}
+/*
+void	precise_usleep(long usec, t_table *table)
+{
+	long	start;
 	long	elapsed;
 	long	rem;
 
@@ -64,7 +79,7 @@ void	precise_usleep(long usec, t_table *table)
 				;
 	}
 }
-
+*/
 /*
 void	precise_usleep(long usec, t_table *table)
 {
