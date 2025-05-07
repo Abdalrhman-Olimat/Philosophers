@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeleimat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aeleimat <aeleimat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 05:04:30 by aeleimat          #+#    #+#             */
-/*   Updated: 2025/02/08 13:16:46 by aeleimat         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:03:57 by aeleimat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ long	gettime(t_time_code time_code)
 void	precise_usleep(long usec, t_table *table)
 {
 	long	start;
-	
+
 	(void)usec;
 	(void)table;
 	start = gettime(MICROSECOUND);
