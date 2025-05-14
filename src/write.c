@@ -14,26 +14,6 @@
 
 /*
 *
-*static void write_status_debug(t_philo_status status,t_philo *philo,
-		long elapsed)
-{
-    if(TAKE_FIRST_FORK == status && !simulation_finished(philo->table))
-        printf("%-6ld %d has taken the 1 fork\n", elapsed, philo->id);
-    else if(TAKE_SECOND_FORK == status && !simulation_finished(philo->table))
-        printf("%-6ld %d has taken the 2 fork\n", elapsed, philo->id);
-    else if(EATING == status && !simulation_finished(philo->table))
-        printf("%-6ld %d is eating\t\t[%d]", elapsed,
-		philo->id,philo->meals_counter);
-    else if(SLEEPING == status && !simulation_finished(philo->table))
-        printf("%-6ld %d is sleeping\n", elapsed, philo->id);
-    else if(THINKING == status && !simulation_finished(philo->table))
-        printf("%-6ld %d is thinking\n", elapsed, philo->id);
-    else if(DEAD == status && !simulation_finished(philo->table))
-        printf("%-6ld %d died\n", elapsed, philo->id);
-}
-
-
-
 void	write_status(t_philo_status status, t_philo *philo, bool debug)
 {
     long elapsed;
@@ -67,6 +47,7 @@ safe_mutex_handel(&philo->table->printf_xx, UNLOCK);
 safe_mutex_handel(&philo->table->write_mutex, UNLOCK);
 }
 */
+
 void	write_status(t_philo_status status, t_philo *philo, bool debug)
 {
 	long	elapsed;
